@@ -1,4 +1,4 @@
-# Important difference between standard HTML tables and div tables
-And a critical difference between div tables
+# Single-threaded JavaScript vs multi-threaded Java. Which is faster?
+Where Java is far behind JavaScript
 
-Sample code for my post https://marian-caikovski.medium.com/important-difference-between-standard-html-tables-and-div-tables-b6b094ec2c79 comparing performance of standard HTML tables and div tables
+Sample code for my post https://marian-caikovski.medium.com/single-threaded-javascript-vs-multi-threaded-java-which-is-faster-d3c36a885878 comparing concurrent HTTP requests in Java and JavaScript
