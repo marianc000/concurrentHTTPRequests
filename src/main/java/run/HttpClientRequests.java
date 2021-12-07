@@ -18,18 +18,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class HttpClientRequests extends Runner {
+    private final HttpClient client = HttpClient.newHttpClient();
 
     @Override
     public CompletableFuture<List<UrlTxt>> requestManyUrls(List<String> urls) throws InterruptedException, ExecutionException {
 
-        HttpClient client = HttpClient.newHttpClient();
-
         CompletableFuture<HttpResponse<String>>[] requests = urls.stream()
                 .map(url -> URI.create(url))
-                .map(uri -> HttpRequest.newBuilder(uri))
-                .map(reqBuilder -> reqBuilder.build())
+                .map(uri -> HttpRequest.newBuilder(uri)
+                    .setHeader("accept-encoding", "gzip,deflate,br")
+                    .build())
                 .map(request -> client.sendAsync(request, BodyHandlers.ofString()))
-                .toArray(i -> new CompletableFuture[i]);
+                .toArray(CompletableFuture[]::new);
 
         return CompletableFuture.allOf(requests)
                 .thenApply(v -> {
